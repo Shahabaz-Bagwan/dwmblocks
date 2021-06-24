@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Prints the current volume or ミュート if muted.
+
+case $BLOCK_BUTTON in
+  #1) setsid $TERMINAL -e pulsemixer ;;
+  1) pavucontrol ;;
+  2) pamixer -t ;;
+  4) pamixer --allow-boost -i 5 ;;
+  5) pamixer --allow-boost -d 5 ;;
+esac
+
+[ $(pamixer --get-mute) = true ] && echo ミュート && exit
+
+vol="$(pamixer --get-volume)"
+
+echo "音:$vol%"

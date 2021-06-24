@@ -1,0 +1,9 @@
+#!/bin/sh
+
+clock=$(date '+%I')
+
+case $BLOCK_BUTTON in
+	1) gsimplecal;;
+esac
+
+date "+ デート: KW%W, %d %b %Y (%a), 時: %I:%M%p"

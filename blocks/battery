@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# acpi alternative
+# acpi | sed "s/Battery [0-9]: //;s/[Dd]ischarging, /電池/;s/[Nn]ot charging, /誤差/;s/[Cc]harging, /充電/;s/[Uu]nknown, /不明/;s/[Ff]ull, /フル/;s/ \(remaining\|until charged\)//"; exit
+
+# Loop through all attached batteries.
+for battery in /sys/class/power_supply/BAT?
+do
+	# Get its remaining capacity and charge status.
+	capacity=$(cat "$battery"/capacity 2>/dev/null) || break
+	status=$(sed "s/[Dd]ischarging/電池:/;s/[Nn]ot charging/誤差:/;s/[Cc]harging/充電:/;s/[Uu]nknown/不明:/;s/[Ff]ull/フル:/" "$battery"/status)
+
+	# If it is discharging and 25% or less, we will add a ❗ as a warning.
+	 [ "$capacity" -le 25 ] && [ "$status" = "電池" ] && warn="❗"
+
+	printf "%s%s%s%% " "$status" "$warn" "$capacity"
+	unset warn
+done | sed 's/ *$//'
