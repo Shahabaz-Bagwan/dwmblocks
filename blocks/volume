@@ -10,8 +10,8 @@ case $BLOCK_BUTTON in
   5) pamixer --allow-boost -d 5 ;;
 esac
 
-[ $(pamixer --get-mute) = true ] && echo ミュート && exit
+[ $(pamixer --get-mute) = true ] && echo 🔇 && exit
 
 vol="$(pamixer --get-volume)"
 
-echo "音:$vol%"
+echo "♪:$vol%"

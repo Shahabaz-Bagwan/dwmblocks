@@ -6,4 +6,4 @@ case $BLOCK_BUTTON in
 	1) gsimplecal;;
 esac
 
-date "+ デート: KW%W, %d %b %Y (%a), 時: %I:%M%p"
+date "+ 📅: KW%W, %d %b %Y (%a), ⏰: %I:%M%p"

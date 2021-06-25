@@ -8,10 +8,10 @@ for battery in /sys/class/power_supply/BAT?
 do
 	# Get its remaining capacity and charge status.
 	capacity=$(cat "$battery"/capacity 2>/dev/null) || break
-	status=$(sed "s/[Dd]ischarging/電池:/;s/[Nn]ot charging/誤差:/;s/[Cc]harging/充電:/;s/[Uu]nknown/不明:/;s/[Ff]ull/フル:/" "$battery"/status)
+	status=$(sed "s/[Dd]ischarging/🔋:/;s/[Nn]ot charging/🛑:/;s/[Cc]harging/🔌:/;s/[Uu]nknown/?:/;s/[Ff]ull/🎚:/" "$battery"/status)
 
 	# If it is discharging and 25% or less, we will add a ❗ as a warning.
-	 [ "$capacity" -le 25 ] && [ "$status" = "電池" ] && warn="❗"
+	 [ "$capacity" -le 25 ] && [ "$status" = "🔋" ] && warn="❗"
 
 	printf "%s%s%s%% " "$status" "$warn" "$capacity"
 	unset warn
