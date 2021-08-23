@@ -6,4 +6,4 @@ case $BLOCK_BUTTON in
 	1) gsimplecal;;
 esac
 
-date "+ 📅: KW%W, %d %b %Y (%a), ⏰: %I:%M%p"
+date "+ : KW%W, %d %b %Y (%a), : %I:%M%p"
