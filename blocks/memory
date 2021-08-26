@@ -1,2 +1,2 @@
 #!/bin/sh
-free --mega | awk 'NF>6{printf (":%2.2fGB/%2.2fGB\n", ( $3 / 1024), ($2 / 1024))}'
+free --mega | awk 'NF>6{printf (" :%2.2fGB/%2.2fGB\n", ( $3 / 1024), ($2 / 1024))}'
