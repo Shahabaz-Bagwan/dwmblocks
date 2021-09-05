@@ -1,16 +1,16 @@
 #!/bin/sh
 
 # Prints the current mic level.
-
+src=$(pamixer --list-sources | grep -iE '"built-in Audio Analog stereo"' | awk '{print $1}')
 case $BLOCK_BUTTON in
   1) pavucontrol ;;
-  2) pamixer --source 1 -t ;;
-  4) pamixer --source 1 -i 1 ;;
-  5) pamixer --source 1 -d 1 ;;
+  2) pamixer --source $src -t ;;
+  4) pamixer --source $src -i 1 ;;
+  5) pamixer --source $src -d 1 ;;
 esac
 
-[ $(pamixer --source 1 --get-mute) = true ] && echo "" && exit
+[ $(pamixer --source $src --get-mute) = true ] && echo "" && exit
 
-mic="$(pamixer --source 1 --get-volume)"
+mic="$(pamixer --source $src --get-volume)"
 
 echo ":$mic%"
