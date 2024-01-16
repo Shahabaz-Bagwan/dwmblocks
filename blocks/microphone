@@ -9,8 +9,8 @@ case $BLOCK_BUTTON in
   5) pamixer --source $src -d 1 ;;
 esac
 
-[ $(pamixer --source $src --get-mute) = true ] && echo "" && exit
+[ $(pamixer --source $src --get-mute) = true ] && echo "󰩅 " && exit
 
 mic="$(pamixer --source $src --get-volume)"
 
-echo ":$mic%"
+echo "󰍮:$mic%"
